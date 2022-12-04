@@ -3,7 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\RecruiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/recommendations/create', [BookController::class, 'create'])->name('recommendations.create');
     Route::post('/searchbook', [BookController::class, 'search'])->name('search');
+    Route::get('/recommendations/create/{id}', [RecommendationController::class, 'create'])->name('recommendations.input');
+    Route::post('/recommendations/store/{googlebook_id}/{user_id}', [RecommendationController::class, 'store'])->name('recommendation.store');
+    Route::get('/recruite/create', [RecruiteController::class, 'create'])->name('recruite.create');
 });
 
 
