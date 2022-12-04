@@ -10,6 +10,8 @@ use App\Http\Requests\BookRequest;
 
 use GuzzleHttp\Client;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class BookController extends Controller
 {
     
@@ -17,6 +19,7 @@ class BookController extends Controller
     {
         return view('posts/recommendations/create');
     }
+    
     
     public function search(BookRequest $request)
     {
@@ -29,11 +32,11 @@ class BookController extends Controller
         
         //googlebooksのURL
         if (empty($title)) {
-            $url = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:'.$author;
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:'.$author.'&maxResults=40';
         } elseif (empty($author)){
-            $url = 'https://www.googleapis.com/books/v1/volumes?q=intitle:'.$title;
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=intitle:'.$title.'&maxResults=40';
         } else {
-            $url = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:'.$author.'+intitle:'.$title;
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:'.$author.'+intitle:'.$title.'&maxResults=40';
         }
         
         //リクエスト送信とデータ取得
@@ -44,8 +47,10 @@ class BookController extends Controller
         
         $information = json_decode($response->getBody(), true);
         
+        
         return view('posts/recommendations/searchResult') ->with([
-            'books' => $information['items'],
+            'books' => $information, 'author' => $author, 'title' => $title,
         ]);
     }
+    
 }

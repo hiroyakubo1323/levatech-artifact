@@ -13,4 +13,13 @@ class Book extends Model
     {
         return $this->hasMany(Recommendation::class);
     }
+    
+    protected $fillable = [
+        'googlebook_id',
+        'happy', 
+        'sadness', 
+        'anger', 
+        'surprised', 
+        'fear', 
+        'disgust'];
 }

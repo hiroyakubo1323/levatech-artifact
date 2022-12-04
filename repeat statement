@@ -1,0 +1,9 @@
+$react = ['happy', 'sadness', 'anger', 'surprised', 'fear', 'disgust'];
+        
+        for ($i=0; $i<=5; $i++) {
+            if (in_array($i+1,$input_emotions)) {
+                ${"sum_".$i} = $book->$react[$i];
+                $book->$react[$i] = ${"sum_".$i} + 1;
+                $book->save();
+            }
+        }

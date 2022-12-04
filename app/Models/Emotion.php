@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Emotion extends Model
 {
     use HasFactory;
+    
+    public function recommendations()
+    {
+        return $this->belongsToMany(Recommendation::class);
+    }
 }
