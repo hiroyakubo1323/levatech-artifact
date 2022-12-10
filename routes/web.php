@@ -29,10 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/recommendations/create', [BookController::class, 'create'])->name('recommendations.create');
+    Route::get('/recommendations/answer/{recruite_id}', [BookController::class, 'create_answer']);    
     Route::post('/searchbook', [BookController::class, 'search'])->name('search');
-    Route::get('/recommendations/create/{id}', [RecommendationController::class, 'create'])->name('recommendations.input');
+    Route::post('/searchbook/{recruite_id}', [BookController::class, 'search_answer']);
+    Route::get('/recommendations/create/{googlebook_id}', [RecommendationController::class, 'create'])->name('recommendations.input');
+    Route::get('/recommendations/answer/{googlebook_id}/{recruite_id}', [RecommendationController::class, 'answer_create']);
     Route::post('/recommendations/store/{googlebook_id}/{user_id}', [RecommendationController::class, 'store'])->name('recommendation.store');
-    Route::get('/recruite/create', [RecruiteController::class, 'create'])->name('recruite.create');
+    Route::post('/recommendations/store/{googlebook_id}/{user_id}/{recruite_id}', [RecommendationController::class, 'answer_store']);
+    Route::get('/recruites/create', [RecruiteController::class, 'create'])->name('recruite.create');
+    Route::post('/recruites/store/{user_id}', [RecruiteController::class, 'store'])->name('recruite.store');
 });
 
 

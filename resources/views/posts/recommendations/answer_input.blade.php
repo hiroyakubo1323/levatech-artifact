@@ -94,8 +94,13 @@
       </div>
     </div>
     
+    <!--募集内容の表示-->
+    <h3>募集内容</h3>
+    <p>{{ $user->name }} </p>
+    <p>{{ $recruite->scene }}</p>
+    
     <!--感想文入力-->
-    <form action="/recommendations/store/{{ $book_id }}/{{ Auth::user()->id }}" method="POST">
+    <form action="/recommendations/store/{{ $book_id }}/{{ Auth::user()->id }}/{{ $recruite->id }}" method="POST">
         @csrf
         <div class='inputForm'>
             <div class='timing'>

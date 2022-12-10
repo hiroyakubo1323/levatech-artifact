@@ -13,4 +13,14 @@ class Recruite extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function Recommendation()
+    {
+        return $this->hasMany(Recommendation::class);
+    }
+    
+     protected $fillable = [
+    'user_id',
+    'scene'
+    ];
 }

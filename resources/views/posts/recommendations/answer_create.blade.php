@@ -7,8 +7,12 @@
 
     
     <h1 class='title'>①紹介する本を決める</h1>
+    <h3>募集内容</h3>
+    <p>{{ $user->name }} </p>
+    <p>{{ $recruite->scene }}</p>
     
-    <form action="/searchbook/" method="POST">
+    
+    <form action="/searchbook/{{ $recruite->id }}" method="POST">
         @csrf
         <div class='inputForm'>
             <div class='author'>
