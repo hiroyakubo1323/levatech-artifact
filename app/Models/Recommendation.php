@@ -24,6 +24,11 @@ class Recommendation extends Model
         return $this->belongsToMany(Emotion::class);
     }
     
+    public function Recruite()
+    {
+        return $this->belongsTo(Recruite::class);
+    }
+    
     
     
     protected $fillable = [
@@ -31,6 +36,7 @@ class Recommendation extends Model
     'book_id',
     'timing',
     'feeling',
-    'point'
+    'point',
+    'recruite_id'
     ];
 }

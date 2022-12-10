@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Book;
 
+use App\Models\Recruite;
+
 use App\Http\Requests\BookRequest;
 
 use GuzzleHttp\Client;
@@ -21,12 +23,20 @@ class BookController extends Controller
     }
     
     
-    public function search(BookRequest $request)
+    public function create_answer($recruite_id, Recruite $recruite)
     {
-        $input = $request['book'];
-        $author = $input['author'];
-        $title = $input['title'];
+        $recruite = Recruite::find($recruite_id);
+        $user = $recruite->user()->get();
         
+        return view('posts/recommendations/answer_create') ->with([
+            'recruite'=>$recruite, 'user'=>$user[0],
+        ]);
+    }
+    
+    
+    //GoogleBooksAPIを使用する関数
+    public function request($author, $title)
+    {
         //クライアントインスタンス
         $client = new \GuzzleHttp\Client();
         
@@ -46,11 +56,40 @@ class BookController extends Controller
         );
         
         $information = json_decode($response->getBody(), true);
+        return $information;
+    }
+    
+    
+    public function search(BookRequest $request)
+    {
+        $input = $request['book'];
+        $author = $input['author'];
+        $title = $input['title'];
         
+        $information = $this->request($author, $title);
         
         return view('posts/recommendations/searchResult') ->with([
             'books' => $information, 'author' => $author, 'title' => $title,
         ]);
     }
+    
+    
+    public function search_answer(BookRequest $request, $recruite_id, Recruite $recruite)
+    {
+        $input = $request['book'];
+        $author = $input['author'];
+        $title = $input['title'];
+        
+        $information = $this->request($author, $title);
+        
+        //user情報を取得
+        $recruite = Recruite::find($recruite_id);
+        $user = $recruite->user()->get();
+        
+        return view('posts/recommendations/answer_searchResult') ->with([
+            'books' => $information, 'author' => $author, 'title' => $title, 'recruite' => $recruite,'user'=>$user[0]
+        ]);
+    }
+    
     
 }

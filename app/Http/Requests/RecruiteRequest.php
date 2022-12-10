@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RecommendationRequest extends FormRequest
+class RecruiteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class RecommendationRequest extends FormRequest
     public function rules()
     {
         return [
-            'recommendation.timing' => 'required|string|max:100',
-            'recommendation.feeling' => 'required|string|max:150',
-            'recommendation.point' => 'max:300',
-            'emotions_array' => 'required|between:1,3',
+            'recruite.scene' => 'required|string|max:200',
         ];
     }
 }
