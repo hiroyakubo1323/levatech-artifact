@@ -10,14 +10,31 @@
             @csrf
 
             <!-- Name -->
-            <div>
+            <div　class="mt-4">
                 <x-input-label for="name" :value="__('Name')" />
 
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
-
+            
+            <!--Gender-->
+            <div class = "mt-4 flex flex-row">
+                <x-input-label　for="gender" :value"_('Gender')" />
+                <label><input class="block mt-1" type="radio" name="gender" value="男性"> 男性</label>
+                <label><input class="block mt-1" type="radio" name="gender" value="女性"> 女性</label>
+                <label><input class="block mt-1" type="radio" name="gender" value="どちらでもない"> どちらでもない</label>
+                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+            </div>
+            
+            
+            <!--birthday-->
+             <div class = 'birthday'>
+                <x-input-label　for="birthday" :value"_('birthday')" />
+                <input class="block mt-1" name="birthday" type="date">
+                <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
+            </div>
+            
             <!-- Email Address -->
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />

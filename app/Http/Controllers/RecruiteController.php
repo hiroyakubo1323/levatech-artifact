@@ -10,6 +10,13 @@ use App\Models\Recruite;
 
 class RecruiteController extends Controller
 {
+    public function index(Recruite $recruite)
+    {
+        return view('posts/recruite/index')->with([
+            'recruites'=>$recruite->getPaginate()
+        ]);
+    }
+    
     public function create()
     {
         return view('posts/recruite/create');

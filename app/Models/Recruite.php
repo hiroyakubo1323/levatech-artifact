@@ -19,7 +19,12 @@ class Recruite extends Model
         return $this->hasMany(Recommendation::class);
     }
     
-     protected $fillable = [
+    public function getPaginate($limit_count = 20)
+    {
+        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    protected $fillable = [
     'user_id',
     'scene'
     ];
