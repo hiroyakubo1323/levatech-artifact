@@ -30,6 +30,12 @@ class Recommendation extends Model
     }
     
     
+    public function getByLimit(int $limit_count = 20)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this::with('book','user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
     
     protected $fillable = [
     'user_id',

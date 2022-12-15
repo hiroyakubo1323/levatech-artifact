@@ -58,7 +58,7 @@
                         <!--複数著者-->    
                         @if (count($book['volumeInfo']['authors']) > 1)    
                             @php
-                                $authors = implode(',', $book['volumeInfo']['authors']);
+                                $authors = implode('　', $book['volumeInfo']['authors']);
                             @endphp
                             
                             <h2 class="text-gray-800 text-xl font-bold">

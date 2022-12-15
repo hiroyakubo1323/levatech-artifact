@@ -40,7 +40,7 @@
                 <!--複数著者-->
                 @if (count($book['authors']) > 1)    
                     @php
-                        $authors = implode(',', $book['authors']);
+                        $authors = implode('　', $book['authors']);
                     @endphp
                             
                 <h2 class="text-gray-800 text-xl md:text-2xl lg:text-4xl font-bold mb-4">
@@ -104,8 +104,8 @@
         @csrf
         <div class='inputForm'>
             <div class='timing'>
-                <h2>読んだタイミング</h2>
-                <input type="text" name="recommendation[timing]" placeholder="例）「受験期」「就活中」「失恋したとき」" value="{{ old('recommendation.timing') }}"/><br>
+                <h2>どのような時、人におすすめですか</h2>
+                <input type="text" name="recommendation[timing]" placeholder="例）「就活中で将来が不安」「失恋したとき」" value="{{ old('recommendation.timing') }}"/><br>
                 <p class="timing__error" style="color:red">{{ $errors->first('recommendation.timing') }}</p>
             </div>
             

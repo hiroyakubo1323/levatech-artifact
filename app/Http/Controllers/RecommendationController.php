@@ -18,6 +18,21 @@ use App\Http\Requests\RecommendationRequest;
 
 class RecommendationController extends Controller
 {
+    public function index(Recommendation $recommendation, Book $book)
+    {
+        return view('posts/recommendations/index')->with([
+            'recommendations'=>$recommendation-> getByLimit()
+        ]);
+        
+    }
+    
+    public function show(Recommendation $recommendation)
+    {
+        return view('posts/recommendations/show')->with([
+            'recommendation'=>$recommendation
+        ]);
+    }
+    
     public function request($googlebook_id)
     {
         $client = new \GuzzleHttp\Client();
@@ -58,8 +73,36 @@ class RecommendationController extends Controller
         $book = Book::firstOrCreate([
             'googlebook_id' => $googlebook_id
         ]);
-        
         $book_id = $book->id;
+        //本の情報登録
+        $information = $this->request($book->googlebook_id);
+        
+        if (array_key_exists('imageLinks', $information['volumeInfo'])) {
+            $book->coverImage = $information['volumeInfo']['imageLinks']['thumbnail'];
+        }
+        
+        if (array_key_exists('authors', $information['volumeInfo'])) {
+            if (count($information['volumeInfo']['authors']) > 1){
+                $authors = implode('　　', $information['volumeInfo']['authors']);
+                $book->author = $authors;
+            } else {
+                $book->author = $information['volumeInfo']['authors'][0];
+            }
+            
+        }
+        if (array_key_exists('title', $information['volumeInfo'])) {
+            $book->title = $information['volumeInfo']['title'];
+        }
+        
+        if (array_key_exists('publishers', $information['volumeInfo'])) {
+            $book->publisher = $information['volumeInfo']['publisher'];
+        }
+        
+        if (array_key_exists('description', $information['volumeInfo'])) {
+            $book->description = $information['volumeInfo']['description'];
+        }
+        $book->save();
+        
         $input_emotions = $request->emotions_array;
         
         $react = ["happy", "sadness", "anger", "surprised", "fear", "disgust"];
@@ -74,10 +117,14 @@ class RecommendationController extends Controller
         }
         
         $input_recommendation = $request['recommendation'];
-        
+        $book_id = $book->id;
         $recommendation -> fill($input_recommendation);
         $recommendation -> user_id = $user_id;
         $recommendation -> book_id = $book_id;
+        if (isset($recruite_id)) {
+            $recommendation -> recruite_id = $recruite_id;
+        }
+        
         $recommendation ->save();
         
         $recommendation->emotions()->attach($input_emotions); 
@@ -90,8 +137,37 @@ class RecommendationController extends Controller
         $book = Book::firstOrCreate([
             'googlebook_id' => $googlebook_id
         ]);
-        
         $book_id = $book->id;
+        //本の情報登録
+        $information = $this->request($book->googlebook_id);
+        
+        
+        if (array_key_exists('imageLinks', $information['volumeInfo'])) {
+            $book->coverImage = $information['volumeInfo']['imageLinks']['thumbnail'];
+        }
+        
+         if (array_key_exists('authors', $information['volumeInfo'])) {
+            if (count($information['volumeInfo']['authors']) > 1){
+                $authors = implode('　　', $information['volumeInfo']['authors']);
+                $book->author = $authors;
+            } else {
+                $book->author = $information['volumeInfo']['authors'][0];
+            }
+            
+        }
+        if (array_key_exists('title', $information['volumeInfo'])) {
+            $book->title = $information['volumeInfo']['title'];
+        }
+        
+        if (array_key_exists('publishers', $information['volumeInfo'])) {
+            $book->publisher = $information['volumeInfo']['publisher'];
+        }
+        
+        if (array_key_exists('description', $information['volumeInfo'])) {
+            $book->description = $information['volumeInfo']['description'];
+        }
+        $book->save();
+        
         $input_emotions = $request->emotions_array;
         
         $react = ["happy", "sadness", "anger", "surprised", "fear", "disgust"];
@@ -106,6 +182,7 @@ class RecommendationController extends Controller
         }
         
         $input_recommendation = $request['recommendation'];
+        
         
         $recommendation -> fill($input_recommendation);
         $recommendation -> user_id = $user_id;

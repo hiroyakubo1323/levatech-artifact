@@ -21,5 +21,11 @@ class Book extends Model
         'anger', 
         'surprised', 
         'fear', 
-        'disgust'];
+        'disgust',
+        'author',
+        'title',
+        'publisher',
+        'coverImage',
+        'description'
+        ];
 }
