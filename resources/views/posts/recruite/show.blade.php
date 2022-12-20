@@ -1,26 +1,29 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('紹介本一覧') }}
+            {{ __('募集箱への回答一覧') }}
         </h2>
     </x-slot>
     
     <body>
-    <form action="/recommendation/emotion" method="POST">
-      @csrf
-      <p class="emotions_array__error" style="color:red">{{ $errors->first('emotions_array') }}</p>
-      @foreach($emotions as $emotion)
-        <label>
-          <input type="checkbox" value="{{ $emotion->id }}" name="emotions_array[]">
-              {{ $emotion->react}}
-          </input>
-        </label>
-      @endforeach
-      <button type="submit">絞り込む</button>
-    </form>
+    @php
+        //誕生日を数値
+        $birthday = str_replace("-", "", $recruite->user->birthday);
+        //現在日時
+        $now = date('Ymd');
+        //年齢
+        $age = floor(($now - $birthday) / 10000);
+    @endphp
+    <div class="flex flex-col border rounded-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-semibold mb-2">{{ $recruite->user->name }} {{ $recruite->user->gender}} {{ $age }}歳（現在）</h3>
+        <p class="text-gray-500 mb-4">{{ $recruite->scene}}</p>
+        <a href="/recommendations/answer/{{$recruite->id}}">紹介文を書く</a>
+    </div>
+    
+   
     
     @foreach($recommendations as $recommendation)    
-        <!--article - start-->
+       <!--article - start-->
         <div class="flex flex-col bg-white border rounded-lg overflow-hidden">
             
             <!--画像-->
@@ -40,8 +43,7 @@
             <h2 class="text-gray-800 text-lg font-semibold mb-2">
               <!--著者の表示-->
               @if (! is_null($recommendation->book->author))
-                <a href="#" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{ $recommendation->book->author }}</a>
-              
+                  <a href="#" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{ $recommendation->book->author }}</a>
               @else
                 <a href="#" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">登録なし</a>
               @endif
@@ -58,8 +60,9 @@
             </h2>
   
             <p class="text-gray-500 mb-8overflow:hidden text-overflow: ellipsis">
-              {{ $recommendation->timing }}
-              
+              {{ $recommendation->timing }}</br>
+              {{ $recommendation->feeling }}</br>
+              {{ $recommendation->point }}
             </p>
   
             <div class="flex justify-between items-end mt-auto">
@@ -74,7 +77,7 @@
                     //年齢
                     $age = floor(($now - $birthday) / 10000);
                   @endphp
-                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name }}  {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
+                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name  }} {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
                 </div>
               </div>
               @foreach($recommendation->emotions as $emotion)

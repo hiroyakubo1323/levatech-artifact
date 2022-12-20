@@ -125,8 +125,6 @@
                         {{ $emotion->react}}
                     </input>
                 </label>
-                
-                
             @endforeach         
             </div>
             

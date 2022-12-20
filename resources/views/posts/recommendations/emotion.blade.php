@@ -6,18 +6,12 @@
     </x-slot>
     
     <body>
-    <form action="/recommendation/emotion" method="POST">
-      @csrf
-      <p class="emotions_array__error" style="color:red">{{ $errors->first('emotions_array') }}</p>
-      @foreach($emotions as $emotion)
-        <label>
-          <input type="checkbox" value="{{ $emotion->id }}" name="emotions_array[]">
-              {{ $emotion->react}}
-          </input>
-        </label>
-      @endforeach
-      <button type="submit">絞り込む</button>
-    </form>
+    <div>
+    @foreach($emotions as $emotion)
+        <h4>"{{ $emotion->react }}"</h4>
+    @endforeach
+    <p>についての紹介文</p>
+    </div>
     
     @foreach($recommendations as $recommendation)    
         <!--article - start-->
@@ -74,7 +68,7 @@
                     //年齢
                     $age = floor(($now - $birthday) / 10000);
                   @endphp
-                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name }}  {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
+                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name  }}  {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
                 </div>
               </div>
               @foreach($recommendation->emotions as $emotion)

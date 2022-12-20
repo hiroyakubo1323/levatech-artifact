@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('紹介本一覧') }}
+            {{ __('自分の投稿一覧') }}
         </h2>
     </x-slot>
     
@@ -74,7 +74,7 @@
                     //年齢
                     $age = floor(($now - $birthday) / 10000);
                   @endphp
-                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name }}  {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
+                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name }} {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
                 </div>
               </div>
               @foreach($recommendation->emotions as $emotion)

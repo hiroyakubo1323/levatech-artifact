@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests\RecruiteRequest;
 
 use App\Models\Recruite;
+
+use App\Models\Emotion;
 
 class RecruiteController extends Controller
 {
@@ -31,6 +35,14 @@ class RecruiteController extends Controller
         $recruite->save();
         
         return redirect('/');
+    }
+    
+    public function eachUser(Recruite $recruite, Emotion $emotion)
+    {
+        $user_id = Auth::user()->id;
+        return view('posts/recruite/user')->with([
+            'recruites' => $recruite->getUserPaginate($user_id)
+        ]);
     }
     
 }

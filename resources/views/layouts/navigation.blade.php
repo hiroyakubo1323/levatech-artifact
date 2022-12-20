@@ -28,6 +28,18 @@
                         {{ __('募集箱一覧') }}
                     </x-nav-link>
                 </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('recommendation.authuser')" :active="request()->routeIs('recommendation.authuser')">
+                        {{ __('自分の投稿一覧') }}
+                    </x-nav-link>
+                </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('recruite.user')" :active="request()->routeIs('recruite.user')">
+                        {{ __('自分の募集箱を確認する') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

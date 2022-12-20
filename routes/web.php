@@ -29,6 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/index', [RecommendationController::class, 'index'])->name('recommendation.index');
     Route::get('/recommendation/{recommendation}', [RecommendationController::class,'show']);
     Route::get('/recruite/index', [RecruiteController::class, 'index'])->name('recruite.index');
+    Route::get('/recruite/show/{recruite_id}', [RecommendationController::class, 'show_answer'])->name('recruite.show');
+    Route::post('/recommendation/emotion', [RecommendationController::class, 'emotion'])->name('recommendation.emotion');
+    Route::get('/authuser/recommendation', [RecommendationController::class, 'auth_user'])->name('recommendation.authuser');
+    Route::get('/user/recruite', [RecruiteController::class, 'eachUser'])->name('recruite.user');
+    Route::get('/book/recommendation/{book_id}', [RecommendationController::class, 'each_book'])->name('recommendation.book');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

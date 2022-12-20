@@ -24,6 +24,11 @@ class Recruite extends Model
         return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    public function getUserPaginate($user_id)
+    {
+        return $this::with('user')->where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate(20);
+    }
+    
     protected $fillable = [
     'user_id',
     'scene'

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Database\Eloquent\Builder;
+
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Recommendation;
 
 use App\Models\Emotion;
@@ -16,20 +20,85 @@ use App\Http\Controllers\BookController;
 
 use App\Http\Requests\RecommendationRequest;
 
+use App\Http\Requests\EmotionRequest;
+
 class RecommendationController extends Controller
 {
-    public function index(Recommendation $recommendation, Book $book)
+    public function index(Recommendation $recommendation, Book $book, Emotion $emotion)
     {
         return view('posts/recommendations/index')->with([
-            'recommendations'=>$recommendation-> getByLimit()
+            'recommendations'=>$recommendation-> getByLimit(),
+            'emotions'=>$emotion->get()
         ]);
         
     }
     
     public function show(Recommendation $recommendation)
     {
+        $book_id = $recommendation->book_id;
+        $sum = Recommendation::where('book_id', $book_id)->get();
+        $sum_num = $sum->count();
+        
+        $react = ["happy", "sadness", "anger", "surprised", "fear", "disgust"];
+        
+        for ($i=0; $i<=5; $i++) {
+            ${"react_".$i} = $react[$i];
+            ${"rate_".$i} = $recommendation->book->${"react_".$i} * 10 / $sum_num;
+            $recommendation->book->${"react_".$i} = ${"rate_".$i};
+        }
+        
         return view('posts/recommendations/show')->with([
             'recommendation'=>$recommendation
+        ]);
+    }
+    
+    public function show_answer($recruite_id, Recommendation $recommendation)
+    {
+        $recruite = Recruite::with('user')->find($recruite_id);
+        
+        return view('posts/recruite/show')->with([
+            'recommendations'=>$recommendation->getAnswerByLimit($recruite_id), 
+            
+            'recruite'=>$recruite
+        ]);
+    }
+    
+    public function emotion(EmotionRequest $request, Recommendation $recommendation, Emotion $emotion)
+    {
+        $input_emotions = $request->emotions_array;
+        $emotions = Emotion::whereIn('id', $input_emotions)->get();
+        return view('posts/recommendations/emotion')->with([
+            'recommendations' => $recommendation->getEmotionByLimit($input_emotions),
+            'emotions' => $emotions
+        ]);
+    }
+    
+    public function auth_user(Recommendation $recommendation,Emotion $emotion)
+    {
+        $user_id = Auth::user()->id;
+        return view('posts/recommendations/user')->with([
+            'recommendations' => $recommendation->getUserByLimit($user_id),
+            'emotions'=>$emotion->get()
+        ]);
+    }
+    
+    public function each_book($book_id, Book $book, Recommendation $recommendation)
+    {
+        $book = $book->where('id', $book_id)->first();
+        $sum = Recommendation::where('book_id', $book_id)->get();
+        $sum_num = $sum->count();
+        
+        $react = ["happy", "sadness", "anger", "surprised", "fear", "disgust"];
+        
+        for ($i=0; $i<=5; $i++) {
+            ${"react_".$i} = $react[$i];
+            ${"rate_".$i} = $book->${"react_".$i} * 10 / $sum_num;
+            $book->${"react_".$i} = ${"rate_".$i};
+        }
+        
+        return view('/posts/recommendations/book')->with([
+            'recommendations' => $recommendation->getBookByLimit($book_id),
+            'book' => $book
         ]);
     }
     
