@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('book_id');
-            $table->string('feeling', 150);
-            $table->string('recommendated_point', 300);
+            $table->string('timing', 150);
+            $table->string('feeling', 200);
+            $table->string('point', 300);
+            $table->foreignID('user_id')->constrained();
+            $table->foreignID('book_id')->constrained();
             $table->timestamps();
         });
     }

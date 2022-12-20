@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('recruites', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignID('user_id')->constrained();
             $table->string('scene', 200);
             $table->timestamps();
         });
