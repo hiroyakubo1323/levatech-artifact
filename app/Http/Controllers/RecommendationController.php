@@ -198,7 +198,7 @@ class RecommendationController extends Controller
         
         $recommendation->emotions()->attach($input_emotions); 
         
-        return redirect('/');
+        return redirect('/recommendation/'.$recommendation->id);
     }
     
     public function answer_store($googlebook_id, $user_id, RecommendationRequest $request, Recommendation $recommendation, Book $book, $recruite_id)
@@ -261,7 +261,7 @@ class RecommendationController extends Controller
         
         $recommendation->emotions()->attach($input_emotions);
         
-        return redirect('/');
+        return redirect('/recruite/show/'.$recruite_id);
     }
 
 }
