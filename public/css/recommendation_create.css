@@ -1,0 +1,55 @@
+h1 {
+    font-size: 36px;
+}
+
+p {
+    font-size: 15px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 20px;
+    font-size: 24px;
+}
+
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+a{
+    display: block;
+}
+
+
+.content {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 30px
+}
+
+.buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    align-items: center;
+    margin: auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    font-size-adjust: 18px;
+    margin-bottom: 30px;
+}
+
+.footer>.bottum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+

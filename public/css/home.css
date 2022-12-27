@@ -1,0 +1,54 @@
+
+
+.content {
+    margin: 0 auto;
+    color: #808080;
+    width: 80%;
+    height: 90%;
+}
+
+.title {
+    text-align: center;
+    margin: 50px;
+}
+
+.main {
+    display: flex;
+}
+
+.main>div {
+    width: 100%;
+    margin: 30px;
+    padding: 20px;
+    border: double 5px #4ec4d3;
+}
+
+.input_form>input {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: none;
+	border-bottom: 2px solid #1b2538;
+	background: transparent;
+}
+
+.buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    align-items: center;
+    margin: auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    font-size-adjust: 18px;
+    margin-bottom: 30px;
+}
+
+

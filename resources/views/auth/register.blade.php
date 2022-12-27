@@ -1,9 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            
         </x-slot>
 
         <form method="POST" action="{{ route('register') }}">
@@ -19,8 +17,8 @@
             </div>
             
             <!--Gender-->
-            <div class = "mt-4 flex flex-row">
-                <x-input-label　for="gender" :value"_('Gender')" />
+            <div class = "mt-4">
+                <x-input-label　for="gender" :value"__('Gender')" />
                 <label><input class="block mt-1" type="radio" name="gender" value="男性"> 男性</label>
                 <label><input class="block mt-1" type="radio" name="gender" value="女性"> 女性</label>
                 <label><input class="block mt-1" type="radio" name="gender" value="どちらでもない"> どちらでもない</label>
@@ -29,9 +27,9 @@
             
             
             <!--birthday-->
-             <div class = 'birthday'>
-                <x-input-label　for="birthday" :value"_('birthday')" />
-                <input class="block mt-1" name="birthday" type="date">
+             <div class = 'mt-4'>
+                <x-input-label　for="birthday" :value"__('birthday')" />
+                <input class="block mt-1" name="birthday" type="date" min="1920-04-01" :value="old('birthday')"/>
                 <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
             </div>
             

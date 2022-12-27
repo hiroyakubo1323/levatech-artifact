@@ -1,0 +1,94 @@
+h1 {
+    font-size: 36px;
+}
+
+p {
+    font-size: 15px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 20px;
+    font-size: 24px;
+}
+
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+
+.user>a {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.article {
+    width: 95%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookInformation {
+    width: 95%;
+    height: 45%;
+    border: solid;
+    
+}
+
+.coverImage {
+    width: 15%;
+    height: 250px;
+    border: solid;
+    float:left;
+    display: flex;
+    align-items: center;
+}
+
+.coverImage>img{
+    width: 95%;
+    height: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detailInformation {
+    float: left;
+    width: 70%;
+    margin: 10px;
+}
+
+.emotion_chart {
+    width: 95%;
+    height: 30%;
+}
+
+.user_emotion{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    float: left;
+    display: flex;
+    align-items: center;
+}
+
+.reacts{
+    padding: 0.5em 1em;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: #6091d3;
+    background: #FFF;
+    border: solid 3px #6091d3;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.all_emotion{
+    width: 30%;
+    height: 85%;
+    float:left;
+}
