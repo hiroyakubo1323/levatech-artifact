@@ -34,7 +34,7 @@ class RecruiteController extends Controller
         $recruite->user_id = $user_id;
         $recruite->save();
         
-        return redirect('/');
+        return redirect('/recruite/index');
     }
     
     public function eachUser(Recruite $recruite, Emotion $emotion)

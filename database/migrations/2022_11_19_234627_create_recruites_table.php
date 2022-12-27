@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignID('user_id')->constrained();
             $table->string('scene', 200);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

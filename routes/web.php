@@ -23,8 +23,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/index', [RecommendationController::class, 'index'])->name('recommendation.index');
     Route::get('/recommendation/{recommendation}', [RecommendationController::class,'show']);

@@ -1,0 +1,157 @@
+h1 {
+    font-size: 36px;
+}
+
+p {
+    font-size: 15px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 20px;
+    font-size: 24px;
+}
+
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+a{
+    display: block;
+}
+
+input {
+    margin: 10px
+}
+.right_side {
+    position: fixed;
+    width: 20%;
+    height: 90%;
+    right: 0;
+    border-left: solid;
+    text-align:  center;
+    background-color: #DDDDDD;
+}
+
+.create_recommendation {
+    width: 95%;
+    height: 30%;
+    display: flex;
+    text-align: center;
+}
+
+.create_buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    font-size-adjust: 18px
+}
+
+.select_emotions {
+    width: 95%;
+    height: 60%;
+}
+
+.article {
+    width: 75%;
+    height: 35%;
+    float: left;
+    border-color: #808080;
+    border-width: 3px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.coverImage {
+    width: 15%;
+    height: 15%;
+    float: left;
+}
+
+.recommendation {
+    float: left;
+    width: 83%;
+    height: 80%;
+    margin: 10px;
+    
+}
+
+.left_recommendation{
+    display: flex;
+    flex-direction:column;
+    float: left;
+    height: 95%;
+    width: 40%;
+}
+
+.bookInformation {
+    font-size: 15px;
+    height: 45%;
+    width: 95%;
+}
+
+.emotions {
+    float: left;
+    height: 45%;
+    width: 95%;
+}
+
+.reacts{
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: #6091d3;
+    background: #FFF;
+    border: solid 3px #6091d3;
+    border-radius: 10px;
+}
+
+.right_recommendation{
+    float: left;
+    height: 95%;
+    width: 50%;
+    display: flex;
+    flex-direction:column;
+}
+
+.impression {
+    float: left;
+    height: 85%;
+    width: 90%;
+}
+
+.impression>div{
+    margin: 10px;
+}
+
+.user {
+    float: left;
+    height: 5%;
+    width: 90%;
+}
+
