@@ -12,6 +12,8 @@ use App\Models\Recruite;
 
 use App\Models\Emotion;
 
+use App\Models\Recommendation;
+
 class RecruiteController extends Controller
 {
     public function index(Recruite $recruite)
@@ -37,12 +39,21 @@ class RecruiteController extends Controller
         return redirect('/recruite/index');
     }
     
-    public function eachUser(Recruite $recruite, Emotion $emotion)
+    public function auth_user(Recruite $recruite, Emotion $emotion)
     {
         $user_id = Auth::user()->id;
-        return view('posts/recruite/user')->with([
+        return view('posts/recruite/auth_user')->with([
             'recruites' => $recruite->getUserPaginate($user_id)
         ]);
     }
+    
+    public function each_user(Recruite $recruite, $user_id)
+    {
+        return view('posts/recruite/each_user')->with([
+            'recruites'=>$recruite->getUserPaginate($user_id),
+            'user_id'=>$user_id
+        ]);
+    }
+    
     
 }

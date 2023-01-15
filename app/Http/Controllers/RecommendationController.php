@@ -52,13 +52,13 @@ class RecommendationController extends Controller
         ]);
     }
     
-    public function show_answer($recruite_id, Recommendation $recommendation)
+    public function show_answer($recruite_id, Recommendation $recommendation, Emotion $emotion)
     {
         $recruite = Recruite::with('user')->find($recruite_id);
         
         return view('posts/recruite/show')->with([
             'recommendations'=>$recommendation->getAnswerByLimit($recruite_id), 
-            
+            'emotions'=>$emotion->get(),
             'recruite'=>$recruite
         ]);
     }
@@ -66,18 +66,40 @@ class RecommendationController extends Controller
     public function emotion(EmotionRequest $request, Recommendation $recommendation, Emotion $emotion)
     {
         $input_emotions = $request->emotions_array;
-        $emotions = Emotion::whereIn('id', $input_emotions)->get();
-        return view('posts/recommendations/emotion')->with([
+        $selected_emotions = Emotion::whereIn('id', $input_emotions)->get();
+        return view('posts/recommendations/index')->with([
             'recommendations' => $recommendation->getEmotionByLimit($input_emotions),
-            'emotions' => $emotions
+            'selected_emotions' => $selected_emotions,
+            'emotions' => $emotion->get()
+        ]);
+    }
+    
+    public function user_emotion(EmotionRequest $request, Recommendation $recommendation, Emotion $emotion, $user_id)
+    {
+        $input_emotions = $request->emotions_array;
+        $selected_emotions = Emotion::whereIn('id', $input_emotions)->get();
+        return view('posts/recommendations/each_user')->with([
+            'recommendations' => $recommendation->getUserEmotionByLimit($user_id,$input_emotions),
+            'user_id' => $user_id,
+            'selected_emotions' => $selected_emotions,
+            'emotions' => $emotion->get()
         ]);
     }
     
     public function auth_user(Recommendation $recommendation,Emotion $emotion)
     {
         $user_id = Auth::user()->id;
-        return view('posts/recommendations/user')->with([
+        return view('posts/recommendations/auth_user')->with([
             'recommendations' => $recommendation->getUserByLimit($user_id),
+            'emotions'=>$emotion->get()
+        ]);
+    }
+    
+    public function each_user(Recommendation $recommendation, Emotion $emotion, $user_id)
+    {
+        return view('posts/recommendations/each_user')->with([
+            'recommendations' => $recommendation->getUserByLimit($user_id),
+            'user_id' => $user_id,
             'emotions'=>$emotion->get()
         ]);
     }
@@ -190,9 +212,7 @@ class RecommendationController extends Controller
         $recommendation -> fill($input_recommendation);
         $recommendation -> user_id = $user_id;
         $recommendation -> book_id = $book_id;
-        if (isset($recruite_id)) {
-            $recommendation -> recruite_id = $recruite_id;
-        }
+        
         
         $recommendation ->save();
         

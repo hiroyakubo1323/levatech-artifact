@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-gray-700 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -10,25 +10,25 @@
                 
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('recommendation.index')" :active="request()->routeIs('recommendation.index')">
+                    <x-nav-link :href="route('recommendation.index')" :active="request()->routeIs('recommendation.index')" class="text-white hover:bg-sky-800 hover:text-white">
                         {{ __('紹介文一覧') }}
                     </x-nav-link>
                 </div>
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('recruite.index')" :active="request()->routeIs('recruite.index')">
+                    <x-nav-link :href="route('recruite.index')" :active="request()->routeIs('recruite.index')" class="text-white hover:bg-sky-800 hover:text-white">
                         {{ __('募集箱一覧') }}
                     </x-nav-link>
                 </div>
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('recommendation.authuser')" :active="request()->routeIs('recommendation.authuser')">
+                    <x-nav-link :href="route('recommendation.authuser')" :active="request()->routeIs('recommendation.authuser')" class="text-white hover:bg-sky-800 hover:text-white">
                         {{ __('自分の投稿一覧') }}
                     </x-nav-link>
                 </div>
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('recruite.user')" :active="request()->routeIs('recruite.user')">
+                    <x-nav-link :href="route('recruite.user')" :active="request()->routeIs('recruite.user')" class="text-white hover:bg-sky-800 hover:text-white">
                         {{ __('自分の募集箱を確認する') }}
                     </x-nav-link>
                 </div>

@@ -1,0 +1,77 @@
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.right_side {
+    top: 138px;
+    position: fixed;
+    width: 20%;
+    height: 90%;
+    right: 0;
+    border-left: solid;
+    text-align:  center;
+    background-color: #DDDDDD;
+}
+
+.buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    margin-top: 30%;
+}
+
+.article {
+    width: 75%;
+    height: 35%;
+    float: left;
+    border-color: #808080;
+    border-width: 3px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.information {
+    float:left;
+    width: 60%;
+    height: 80%;
+    margin: 20px;
+}
+
+.scene {
+     background-color: #DDDDDD;
+     margin-top: 20px
+}
+
+.detail {
+    float: right;
+    margin-top: 20px;
+    width: 30%;
+    height: 80%
+}
+
+.answer {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 10px
+}

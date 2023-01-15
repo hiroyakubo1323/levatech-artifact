@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-xl text-white leading-tight">
             {{ __('募集箱への回答一覧') }}
-        </h2>
+        </h1>
     </x-slot>
     
     <body>
@@ -14,82 +14,115 @@
         //年齢
         $age = floor(($now - $birthday) / 10000);
     @endphp
-    <div class="flex flex-col border rounded-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-semibold mb-2">{{ $recruite->user->name }} {{ $recruite->user->gender}} {{ $age }}歳（現在）</h3>
-        <p class="text-gray-500 mb-4">{{ $recruite->scene}}</p>
-        <a href="/recommendations/answer/{{$recruite->id}}">紹介文を書く</a>
+    
+    <div class="recruite">
+        <h3>募集内容</h3>
+        <p>投稿者：{{ $recruite->user->name }} {{ $recruite->user->gender}} {{ $age }}歳（現在）</p>
+        <p>抱えている感情や直面している状況：</p>
+        <h4>{{ $recruite->scene }}</h4>
     </div>
     
-   
+   <div class="right_side">
+      <div class="create_recommendation">
+        <a href="/recommendations/answer/{{$recruite->id}}" class="create_buttom">紹介文を作成する</a>
+      </div>
+      
+      <div class="select_emotions">
+        <h2 class="form_title">感情で検索</h2>
+        <form action="/recommendation/emotion" method="POST">
+          @csrf
+          <p class="emotions_array__error" style="color:red">{{ $errors->first('emotions_array') }}</p>
+          @foreach($emotions as $emotion)
+            <label class="each_emotion">
+              <input type="checkbox" value="{{ $emotion->id }}" name="emotions_array[]">
+                  {{ $emotion->react}}</br>
+              </input>
+            </label>
+          @endforeach
+          <input  class="buttom" type="submit" value="検索する"/>
+        </form>
+      </div>
+    </div>
     
     @foreach($recommendations as $recommendation)    
-       <!--article - start-->
-        <div class="flex flex-col bg-white border rounded-lg overflow-hidden">
-            
-            <!--画像-->
-            @if (! is_null($recommendation->book->coverImage))
-              <a href="/recommendation/{{ $recommendation->id }}" class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
-                <img src="{{ $recommendation->book->coverImage }}" loading="lazy" alt="Photo by Minh Pham" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-              </a>
-            @else
-              <p  class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">取得できません</p>
-            @endif
-          
-          @if ( !is_null($recommendation->recruite_id) )
-            <p>募集箱への回答です。</p>
-          @endif
-          
-          <div class="flex flex-col flex-1 p-4 sm:p-6">
-            <h2 class="text-gray-800 text-lg font-semibold mb-2">
-              <!--著者の表示-->
-              @if (! is_null($recommendation->book->author))
-                  <a href="#" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{ $recommendation->book->author }}</a>
+      <!--article - start-->
+        <a href="/recommendation/{{ $recommendation->id }}">
+          <div class="article">
+            <div class = "coverImage" >
+                <!--画像-->
+              @if (! is_null($recommendation->book->coverImage))
+                <img src="{{ $recommendation->book->coverImage }}" loading="lazy" alt="Photo by Minh Pham"/>
               @else
-                <a href="#" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">登録なし</a>
+                <p  class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">取得できません</p>
               @endif
+            </div>
+            
+            
+            <div class="recommendation">
+              <div class="left_recommendation">
+                <div class="bookInformation">
+                  <h3>
+                  <!--著者の表示-->
+                    著者：
+                    @if (! is_null($recommendation->book->author))
+                      {{ $recommendation->book->author }}</br>
+                    @else
+                      登録なし</br>
+                    @endif
+                    
+                    <!--タイトル-->
+                    タイトル：
+                      @if (! is_null($recommendation->book->title))
+                        {{ $recommendation->book->title }}</br>
+                      @else
+                        登録なし</br>
+                      @endif
+                    </h3>
+                  </div> 
+                  
+                  <div class="emotions"> 
+                    </br><h3> 抱いた感情：</h3></br>
+                    @foreach($recommendation->emotions as $emotion)
+                      <span class=reacts>
+                        {{ $emotion->react }}
+                      </span>
+                    @endforeach 
+                  </div>
+                </div>  
               
-              <!--タイトル-->
-              <a href="#" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">
-                @if (! is_null($recommendation->book->title))
-                  {{ $recommendation->book->title }}
-                @else
-                  登録なし
-                @endif
-                
-              </a>
-            </h2>
-  
-            <p class="text-gray-500 mb-8overflow:hidden text-overflow: ellipsis">
-              {{ $recommendation->timing }}</br>
-              {{ $recommendation->feeling }}</br>
-              {{ $recommendation->point }}
-            </p>
-  
-            <div class="flex justify-between items-end mt-auto">
-              <div class="flex items-center gap-2">
-                <div>
-                  <span class="block text-indigo-500">{{ $recommendation->name }}</span>
+              <div class="right_recommendation">
+                <div class="impression">
+                  <div class="timing">  
+                    <h3>こんな人、こんな時におすすめ：</h3>
+                    <p>
+                    {{ $recommendation->timing }}
+                    </p>
+                  </div>
+                  
+                  <div class="feeling">
+                    <h3>読後感：</h3>
+                    <p>{{ $recommendation->feeling }}</p>
+                  </div>
+                </div>  
+      
+                <div class="user">
                   @php
-                    //誕生日を数値
-                    $birthday = str_replace("-", "", $recommendation->user->birthday);
-                    //現在日時
-                    $now = date('Ymd');
-                    //年齢
-                    $age = floor(($now - $birthday) / 10000);
-                  @endphp
-                  <span class="block text-gray-400 text-sm">{{ $recommendation->user->name  }} {{ $recommendation->user->gender }} {{ $age }}歳（現在）</span>
+                      //誕生日を数値
+                      $birthday = str_replace("-", "", $recommendation->user->birthday);
+                      //現在日時
+                      $now = date('Ymd');
+                      //年齢
+                      $age = floor(($now - $birthday) / 10000);
+                    @endphp
+                  <p>投稿者： {{ $recommendation->user->name }}    {{ $recommendation->user->gender }}   {{ $age }}歳（現在）</p></nobr>
                 </div>
               </div>
-              @foreach($recommendation->emotions as $emotion)
-                <span class="text-gray-500 text-sm border rounded px-2 py-1">
-                  {{ $emotion->react }}
-                </span>
-              @endforeach
             </div>
           </div>
-        
-        </div>
+        </a>
         <!-- article - end -->
       @endforeach
     </body>
+    <link rel="stylesheet" href="{{ asset('/css/recruite_show.css')  }}" >
+    <link rel="stylesheet" href="{{ asset('/css/recommendation_index.css')  }}" >
 </x-app-layout>

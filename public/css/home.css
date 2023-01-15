@@ -1,8 +1,28 @@
+.backgroundImage {
+    background-image: url(../image/book.jpg);
+   background-size: cover;
+}
 
+ .backgroundImage::before {
+      background: inherit;  
+      content: '';
+      background-size: cover;
+      position: absolute;
+      filter: blur(3px); 
+      top: -5px;
+      right: -5px;
+      bottom: -5px;
+      left: -5px;
+      z-index: -1;
+  }
+
+.transparent {
+   
+}
 
 .content {
     margin: 0 auto;
-    color: #808080;
+    color: black;
     width: 80%;
     height: 90%;
 }
@@ -30,7 +50,7 @@
 	padding: 0.3em;
 	transition: 0.3s;
 	letter-spacing: 1px;
-	color: #aaaaaa;
+	color: #000000;
 	border: none;
 	border-bottom: 2px solid #1b2538;
 	background: transparent;

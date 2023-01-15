@@ -61,6 +61,13 @@ class Recommendation extends Model
         return $this::with('book','user')->where('book_id', $book_id)->orderBy('updated_at', 'DESC')->paginate(20);
     }
     
+    public function getUserEmotionByLimit($user_id,$input_emotions)
+    {
+        return $this::with('book','user')->where('user_id', $user_id)->whereHas('emotions', function (Builder $query) use($input_emotions) {
+            $query->whereIn('emotion_id', $input_emotions);
+        })->orderBy('updated_at', 'DESC')->paginate(20);
+    }
+    
     protected $fillable = [
     'user_id',
     'book_id',

@@ -23,6 +23,25 @@ h3{
     padding: 5px;
 }
 
+.recruite {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.recruite_buttom {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 280px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
 .article {
     width: 95%;
     margin: 10px;
@@ -31,7 +50,7 @@ h3{
 }
 
 .bookInformation {
-    width: 95%;
+    width: 100%;
     height: 45%;
     border: solid;
     
@@ -55,19 +74,37 @@ h3{
 
 .detailInformation {
     float: left;
-    width: 70%;
+    width: 80%;
     margin: 10px;
+}
+
+.mainInformation{
+    float: left;
+    width: 65%;
+    height: 95%;
+}
+
+.description {
+    width: 30%;
+    float: right;
 }
 
 .emotion_chart {
     width: 95%;
-    height: 30%;
+    height: 45%;
+    margin: 20px;
+}
+
+.all_emotion{
+    width: 50%;
+    height: 90%;
+    float:left;
 }
 
 .user_emotion{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 50%;
     float: left;
     display: flex;
     align-items: center;
@@ -87,8 +124,21 @@ h3{
     text-align: center;
 }
 
-.all_emotion{
-    width: 30%;
-    height: 85%;
-    float:left;
+.recommendation {
+    width: 95%;
+    margin: 20px;
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px black;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+
+.recommendation>div {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
 }

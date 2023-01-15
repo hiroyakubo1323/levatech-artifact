@@ -1,0 +1,114 @@
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px
+}
+
+.buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 150px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+.content {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.recruite {
+    width: 70%;
+    margin-left: 30px;
+    background-color: #DDDDDD;
+    margin-bottom: 50px
+}
+
+.selectBook {
+    width: 100%;
+    height: 50%;
+    background-color: #FFFFFF;
+}
+
+.bookInformation {
+    height: 90%;
+    display: flex;
+    margin: auto;
+}
+
+.coverImage {
+    float: left;
+    width: 20%;
+    height: 50%;
+    padding: 10px;
+}
+
+.detailInformation {
+    float: left;
+    width: 80%;
+    height: 90%;
+    padding: 10px;
+}
+
+.identifiedInformation {
+    float: left;
+    width: 30%;
+    padding: 10px;
+}
+
+.description {
+    float: left;
+    width: 60%;
+    padding: 10px;
+}
+
+.inputForm {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+textarea {
+  resize: both;
+  min-width: 95%;
+}
+
+.recommendation {
+    width: 100%;
+    display: flex;
+}
+
+
+.left_recommendation {
+    width: 45%;
+    float: left;
+    margin: 10px;
+}
+
+.right_recommendation {
+    width: 45%;
+    float: left;
+    margin: 10px;
+}
+
+.point {
+    height: 80%;
+}
+
+.emotion {
+    height: 20%;
+}
+.inputPoint {
+    height: 80%;
+}

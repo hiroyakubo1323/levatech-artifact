@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-xl text-white leading-tight">
             {{ __('紹介状詳細') }}
         </h1>
     </x-slot>
     
     <body>
-   <div class="user">
+    <div class="user">
       @php
         //誕生日を数値
         $birthday = str_replace("-", "", $recommendation->user->birthday);
@@ -15,15 +15,19 @@
         //年齢
         $age = floor(($now - $birthday) / 10000);
       @endphp
-      <a href="">投稿者： {{ $recommendation->user->name }}    {{ $recommendation->user->gender }}   {{ $age }}歳（現在）</a></nobr>
+      <a href="/user/{{ $recommendation->user->id }}/recommendation">投稿者： {{ $recommendation->user->name }}    {{ $recommendation->user->gender }}   {{ $age }}歳（現在）</a></nobr>
     </div>
     
+    @if ( !is_null($recommendation->recruite_id) )
+        <div class="recruite">
+          <a href="/recruite/show/{{ $recommendation->recruite_id }}" class="recruite_buttom">回答された募集箱を見る</a>
+        </div>
+    @endif
+   　
    　<div class="article">
         <!--article - start-->
         <div class="bookInformation">
-          @if ( !is_null($recommendation->recruite_id) )
-            <a href="/recruite/show/{{ $recommendation->recruite_id }}">募集箱への回答です。</a>
-          @endif
+          
           
           <a href="/book/recommendation/{{ $recommendation->book->id }}">
           <div class="coverImage">  
@@ -36,53 +40,66 @@
           
           
           <div class="detailInformation">
-            <h3>
-              <!--著者の表示-->
-              著者：
-              @if (! is_null($recommendation->book->author))
-                {{ $recommendation->book->author }}</br>
-              @else
-                登録なし</br>
-              @endif
+            <div class="mainInformation">
+              <h3>
+                <!--著者の表示-->
+                著者：
+                @if (! is_null($recommendation->book->author))
+                  {{ $recommendation->book->author }}</br>
+                @else
+                  登録なし</br>
+                @endif
+                
+                <!--タイトル-->
+                タイトル：
+                @if (! is_null($recommendation->book->title))
+                  {{ $recommendation->book->title }}
+                @else
+                  登録なし
+                @endif
+              </h3>
               
-              <!--タイトル-->
-              タイトル：
-              @if (! is_null($recommendation->book->title))
-                {{ $recommendation->book->title }}
-              @else
-                登録なし
-              @endif
-            </h3>
+              <!--感情-->
+              <div class="emotion_chart">    
+                <div class="all_emotion" style="position:relative;width:100;height:100;">
+                  <h3>みんなのこの本への感情</h3>
+                  <canvas id="myChart">
+                  </canvas>
+                </div>
+                
+                <div class="user_emotion">
+                  <h3> 投稿者が抱いた感情</h3></br>
+                  @foreach($recommendation->emotions as $emotion)
+                    <span class="reacts">
+                      {{ $emotion->react }}
+                    </span>
+                  @endforeach 
+                </div>
+              </div>
+            </div>  
+            <!--あらすじ-->
             <h3 class="description">あらすじ：</br>{{ $recommendation->book->description }}</h3>
           </div>
           </a>
         </div>
           
-        <div class="emotion_chart">    
-          <div class="all_emotion" style="position:relative;width:100;height:100;">
-            <h3>みんなのこの本への感情</h3>
-            <canvas id="myChart">
-            </canvas>
-          </div>
-          
-          <div class="user_emotion">
-            <h3> 読者が抱いた感情</h3></br>
-            @foreach($recommendation->emotions as $emotion)
-              <span class="reacts">
-                {{ $emotion->react }}
-              </span>
-            @endforeach 
-          </div>
-          
-        </div>
         
         <div class="recommendation">
-          <h3>こんな人、時におすすめ</h3></br>
+          <h2>投稿者の投稿内容</h2>
+          <div>
+            <h3>こんな人、時におすすめ</h3></br>
             <p>{{ $recommendation->timing }}</p></br>
-          <h3>読後感</h3></br>    
-            <p>{{ $recommendation->feeling }}</p></br>
-          <h3>おすすめポイント</h3></br>     
-              <p>{{ $recommendation->point }}</p></br>
+          </div>
+          
+          <div>  
+            <h3>読後感</h3></br>    
+              <p>{{ $recommendation->feeling }}</p></br>
+          </div>
+          
+          <div>
+            <h3>おすすめポイント</h3></br>     
+            <p>{{ $recommendation->point }}</p></br>
+          </div>
         </div>
   
        

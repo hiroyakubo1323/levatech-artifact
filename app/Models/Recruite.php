@@ -19,9 +19,9 @@ class Recruite extends Model
         return $this->hasMany(Recommendation::class);
     }
     
-    public function getPaginate($limit_count = 20)
+    public function getPaginate()
     {
-        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate(20);
     }
     
     public function getUserPaginate($user_id)

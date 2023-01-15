@@ -1,7 +1,7 @@
 <x-app-layout>
       <x-slot name="header">
           <h1 class="font-semibold text-xl text-white leading-tight">
-              {{ __('紹介された本一覧') }}
+              {{ __('ユーザー別ページ') }}
           </h1>
       </x-slot>
 
@@ -18,12 +18,12 @@
     
     <div class="right_side">
       <div class="create_recommendation">
-        <a href="recommendations/create" class="create_buttom">紹介文を作成する</a>
+        <a href="/user/{{ $user_id }}/recruite" class="create_buttom">この人の募集箱を見る</a>
       </div>
       
       <div class="select_emotions">
         <h2 class="form_title">感情で検索</h2>
-        <form action="/recommendation/emotion" method="POST">
+        <form action="/user/{{ $user_id }}/recommendation/emotion" method="POST">
           @csrf
           <p class="emotions_array__error" style="color:red">{{ $errors->first('emotions_array') }}</p>
           @foreach($emotions as $emotion)
@@ -43,9 +43,6 @@
         <a href="/recommendation/{{ $recommendation->id }}">
           <div class="article">
             <div class = "coverImage" >
-              @if ( !is_null($recommendation->recruite_id) )
-                <p>募集箱への回答です。</p>
-              @endif
                 <!--画像-->
               @if (! is_null($recommendation->book->coverImage))
                 <img src="{{ $recommendation->book->coverImage }}" loading="lazy" alt="Photo by Minh Pham"/>
@@ -53,7 +50,9 @@
                 <p  class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">取得できません</p>
               @endif
             </div>
-            
+            @if ( !is_null($recommendation->recruite_id) )
+              <p>募集箱への回答です。</p>
+            @endif
             
             <div class="recommendation">
               <div class="left_recommendation">

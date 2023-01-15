@@ -1,0 +1,27 @@
+p {
+    font-size: 15px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 20px;
+    font-size: 24px;
+}
+
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px
+}
+
+.recruite {
+    width: 75%;
+    min-height: 50%;
+    margin-left: 30px;
+    background-color: #DDDDDD;
+    margin-bottom: 30px;
+    
+}

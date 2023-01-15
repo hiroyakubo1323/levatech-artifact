@@ -4,10 +4,10 @@
             {{ __('募集箱一覧') }}
         </h2>
     </x-slot>
-    
+
     <div class="right_side">
         <a class="buttom" href="/recruites/create">募集箱を作成する</a>
-        <a class="buttom" href="/recruites/nonanswered">未回答の募集箱</a>
+        <a class="buttom" href="/recruites/nonanswered">回答された募集箱</a>
     </div>
     
     @foreach ($recruites as $recruite)
@@ -30,7 +30,6 @@
             
             <div class="detail">
                 <a href="/recruite/show/{{ $recruite->id }}" class="answer">回答を見る</a>
-                <a href="/recommendations/answer/{{ $recruite->id }}" class="answer">本を紹介する</a>
             </div>
         </div>
     @endforeach

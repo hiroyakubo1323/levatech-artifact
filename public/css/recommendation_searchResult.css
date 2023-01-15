@@ -1,0 +1,112 @@
+body {
+    height: 100vh;
+}
+
+h3{
+    margin: 10px;
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px
+}
+
+.recruite {
+    width: 70%;
+    margin-left: 30px;
+    background-color: #DDDDDD;
+    margin-bottom: 50px
+    
+}
+
+.buttom {
+    background: #eee;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 150px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+.right_side {
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    top: 138px;
+    margin-top: 0px;
+    right: 0;
+    border-left: solid;
+    text-align:  center;
+    background-color: #DDDDDD;
+    
+}
+
+.inputForm {
+    position: relative;
+    top: 100px;
+}
+
+.contents {
+    width: 80%;
+    height: 100%
+}
+
+.items {
+    width: 80%;
+    height: 45%;
+    margin: 10px;
+    background-color: #C0C0C0;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-width: 5px;
+    border-color: #000080;
+    
+}
+
+.bookInformation {
+    height: 90%;
+    display: flex;
+}
+
+
+.coverImage {
+    float: left;
+    width: 20%;
+    height: 90%;
+    padding: 10px;
+}
+
+.detailInformation {
+    float: left;
+    width: 80%;
+    height: 90%;
+    padding: 10px;
+}
+
+
+
+.identifiedInformation {
+    float: left;
+    width: 40%;
+    padding: 10px;
+}
+
+.description {
+    float: left;
+    width: 40%;
+    padding: 10px;
+}
+
+
+.link{
+    height: 5%;
+    text-align: center;
+}
+

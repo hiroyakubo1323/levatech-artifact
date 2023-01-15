@@ -17,10 +17,20 @@ h3{
     font-size: 20px;
 }
 
+h4 {
+    font-size: 18px
+}
+
 a{
     display: block;
 }
 
+.recruite {
+    width: 70%;
+    margin: auto;
+    background-color: #DDDDDD;
+    
+}
 
 .content {
     height: 100%;

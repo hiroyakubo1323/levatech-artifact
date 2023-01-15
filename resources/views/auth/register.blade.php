@@ -8,7 +8,7 @@
             @csrf
 
             <!-- Name -->
-            <div　class="mt-4">
+            <div class="mt-4">
                 <x-input-label for="name" :value="__('Name')" />
 
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
@@ -17,8 +17,8 @@
             </div>
             
             <!--Gender-->
-            <div class = "mt-4">
-                <x-input-label　for="gender" :value"__('Gender')" />
+            <div class="mt-4">
+                <x-input-label for="gender" :value="__('Gender')" />
                 <label><input class="block mt-1" type="radio" name="gender" value="男性"> 男性</label>
                 <label><input class="block mt-1" type="radio" name="gender" value="女性"> 女性</label>
                 <label><input class="block mt-1" type="radio" name="gender" value="どちらでもない"> どちらでもない</label>
@@ -28,7 +28,7 @@
             
             <!--birthday-->
              <div class = 'mt-4'>
-                <x-input-label　for="birthday" :value"__('birthday')" />
+                <x-input-label for="birthday" :value="__('Birthday')" />
                 <input class="block mt-1" name="birthday" type="date" min="1920-04-01" :value="old('birthday')"/>
                 <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
             </div>

@@ -33,8 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/recruite/index', [RecruiteController::class, 'index'])->name('recruite.index');
     Route::get('/recruite/show/{recruite_id}', [RecommendationController::class, 'show_answer'])->name('recruite.show');
     Route::post('/recommendation/emotion', [RecommendationController::class, 'emotion'])->name('recommendation.emotion');
+    Route::post('/user/{user_id}/recommendation/emotion', [RecommendationController::class, 'user_emotion']);
     Route::get('/authuser/recommendation', [RecommendationController::class, 'auth_user'])->name('recommendation.authuser');
-    Route::get('/user/recruite', [RecruiteController::class, 'eachUser'])->name('recruite.user');
+    Route::get('/user/{user_id}/recommendation', [RecommendationController::class, 'each_user']);
+    Route::get('/user/{user_id}/recruite', [RecruiteController::class, 'each_user']);
+    Route::get('/user/recruite', [RecruiteController::class, 'auth_user'])->name('recruite.user');
     Route::get('/book/recommendation/{book_id}', [RecommendationController::class, 'each_book'])->name('recommendation.book');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -49,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/recommendations/store/{googlebook_id}/{user_id}/{recruite_id}', [RecommendationController::class, 'answer_store']);
     Route::get('/recruites/create', [RecruiteController::class, 'create'])->name('recruite.create');
     Route::post('/recruites/store/{user_id}', [RecruiteController::class, 'store'])->name('recruite.store');
+    Route::get('/recruites/nonanswered', [RecruiteController::class, 'nonanswered']);
 });
 
 

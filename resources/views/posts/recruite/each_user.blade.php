@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('募集箱一覧') }}
+            {{ __('ユーザー別ページ') }}
         </h2>
     </x-slot>
     
     <div class="right_side">
+        <a class="buttom" href="/user/{{ $user_id }}/recommendation">この人の紹介文を見る</a>
         <a class="buttom" href="/recruites/create">募集箱を作成する</a>
-        <a class="buttom" href="/recruites/nonanswered">未回答の募集箱</a>
     </div>
     
     @foreach ($recruites as $recruite)

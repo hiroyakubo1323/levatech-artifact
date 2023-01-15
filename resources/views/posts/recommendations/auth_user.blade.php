@@ -1,10 +1,10 @@
 <x-app-layout>
-      <x-slot name="header">
-          <h1 class="font-semibold text-xl text-white leading-tight">
-              {{ __('紹介された本一覧') }}
-          </h1>
-      </x-slot>
-
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-white leading-tight">
+            {{ __('自分の投稿一覧') }}
+        </h2>
+    </x-slot>
+    
     <body>
     
     @if (isset($selected_emotions))
